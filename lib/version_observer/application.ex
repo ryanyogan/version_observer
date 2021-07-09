@@ -21,6 +21,9 @@ defmodule VersionObserver.Application do
       VersionObserver.HordeSupervisor,
       VersionObserver.NodeObserver,
 
+      # Version monitoring
+      VersionObserver.Version.Monitor.Starter,
+
       # Start the Endpoint (http/https)
       VersionObserverWeb.Endpoint
     ]
