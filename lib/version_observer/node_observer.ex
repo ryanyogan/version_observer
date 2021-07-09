@@ -2,6 +2,11 @@ defmodule VersionObserver.NodeObserver do
   use GenServer
 
   alias DownloadManager.{HordeRegistry, HordeSupervisor}
+  alias Phoenix.PubSub
+
+  @topic "node_observer"
+
+  def topic, do: @topic
 
   def start_link(_), do: GenServer.start_link(__MODULE__, [])
 
@@ -15,12 +20,16 @@ defmodule VersionObserver.NodeObserver do
     set_members(HordeRegistry)
     set_members(HordeSupervisor)
 
+    PubSub.broadcast(VersionObserver.PubSub, @topic, :nodeup)
+
     {:noreply, state}
   end
 
   def handle_info({:nodedown, _node, _node_type}, state) do
     set_members(HordeRegistry)
     set_members(HordeSupervisor)
+
+    PubSub.broadcast(VersionObserver.PubSub, @topic, :nodedown)
 
     {:noreply, state}
   end
