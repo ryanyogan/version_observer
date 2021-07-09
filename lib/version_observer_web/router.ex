@@ -16,11 +16,6 @@ defmodule VersionObserverWeb.Router do
   scope "/", VersionObserverWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
+    get "/*path", PageController, :index
   end
-
-  # Other scopes may use custom stacks.
-  # scope "/api", VersionObserverWeb do
-  #   pipe_through :api
-  # end
 end
