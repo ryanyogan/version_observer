@@ -13,6 +13,9 @@ defmodule VersionObserver.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: VersionObserver.PubSub},
 
+      # Start the Version Repo
+      VersionObserver.Version.Repo,
+
       # Start horde modules
       VersionObserver.HordeRegistry,
       VersionObserver.HordeSupervisor,
