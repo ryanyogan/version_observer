@@ -1,7 +1,7 @@
 defmodule VersionObserver.NodeObserver do
   use GenServer
 
-  alias DownloadManager.{HordeRegistry, HordeSupervisor}
+  alias VersionObserver.{HordeRegistry, HordeSupervisor}
   alias Phoenix.PubSub
 
   @topic "node_observer"
